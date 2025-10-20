@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简介 - 杨冠汀</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: #f5f7fa; color: #333; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
+        .container { max-width: 800px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
+        header { background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 30px; text-align: center; }
+        .profile-img { width: 120px; height: 120px; border-radius: 50%; border: 4px solid white; margin: 0 auto 15px; background: #eee; display: flex; align-items: center; justify-content: center; }
+        .profile-img i { font-size: 50px; color: #bbb; }
+        h1 { font-size: 2rem; margin-bottom: 10px; }
+        .title { opacity: 0.9; font-weight: 300; margin-bottom: 15px; }
+        main { padding: 20px; }
+        section { margin-bottom: 25px; }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 8px; margin-bottom: 15px; }
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        th, td { border: 1px solid #ddd; padding: 12px; text-align: left; }
+        th { background: #3498db; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .icon-list li { display: flex; align-items: center; margin-bottom: 10px; }
+        .icon-list i { margin-right: 10px; color: #3498db; width: 20px; }
+        .self-evaluation { background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db; }
+        footer { background: #2c3e50; color: white; text-align: center; padding: 15px; margin-top: 20px; }
+        @media (max-width: 768px) {
+            .profile-img { width: 100px; height: 100px; }
+            h1 { font-size: 1.7rem; }
+            table, th, td { font-size: 0.9rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="profile-img">
+                <i class="fas fa-user"></i>
+            </div>
+            <h1>杨冠汀</h1>
+            <p class="title">软件工程师 | 前端开发专家</p>
+        </header>
+        
+        <main>
+            <section>
+                <h2>基本信息</h2>
+                <table>
+                    <tr><th>姓名</th><td>杨冠汀</td><th>学历</th><td>本科</td></tr>
+                    <tr><th>专业</th><td>计算机科学与技术</td><th>毕业院校</th><td>鲁东大学</td></tr>
+                    <tr><th>联系电话</th><td>15207752342</td><th>电子邮箱</th><td>qiushou@example.com</td></tr>
+                    <tr><th>现居地</th><td colspan="3">江苏南通</td></tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>项目经历</h2>
+                <table>
+                    <tr><th rowspan="2">项目名称</th><td colspan="3">2025年软件杯大赛 - 基于深度学习的智能医疗诊断系统</td></tr>
+                    <tr><th>项目时间</th><td>2024年9月 - 2025年6月</td><th>担任角色</th><td>前端开发负责人</td></tr>
+                    <tr><th>项目描述</th><td colspan="3">开发基于深度学习的智能医疗诊断系统,通过分析医学影像辅助医生进行疾病诊断。前端采用React框架,实现直观的用户界面和流畅的用户体验。</td></tr>
+                </table>
+            </section>
+            
+            <section>
+                <h2>技能证书</h2>
+                <ol class="icon-list">
+                    <li><i class="fas fa-certificate"></i> Oracle Certified Professional, Java SE 11 Developer</li>
+                    <li><i class="fas fa-certificate"></i> AWS Certified Solutions Architect</li>
+                    <li><i class="fas fa-certificate"></i> Microsoft Certified: Azure Developer</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>兴趣爱好</h2>
+                <ol class="icon-list">
+                    <li><i class="fas fa-code"></i> 编程与开源项目</li>
+                    <li><i class="fas fa-book"></i> 阅读技术书籍</li>
+                    <li><i class="fas fa-music"></i> 钢琴演奏</li>
+                    <li><i class="fas fa-hiking"></i> 徒步旅行</li>
+                </ol>
+            </section>
+            
+            <section>
+                <h2>自我评价</h2>
+                <div class="self-evaluation">
+                    <p>作为一名软件工程师,我始终保持着对技术的热情和好奇心。在五年的开发经验中,我积累了丰富的前后端开发经验,特别擅长使用React和Vue.js构建复杂的单页应用。我注重代码质量和可维护性,习惯编写清晰、模块化的代码。</p>
+                    <p>在团队协作方面,我具有良好的沟通能力和团队合作精神，能够快速融入新环境并与不同背景的同事高效合作。我习惯使用敏捷开发方法，能够适应快节奏的工作环境，并在压力下保持高质量的工作输出。</p>
+                    <p>我持续关注行业最新技术动态,定期学习新技术并将其应用到实际项目中。最近,我深入研究了WebAssembly和微前端架构,并在个人项目中进行了实践。我相信技术是为解决问题服务的，因此我不仅关注技术本身，更注重如何利用技术创造真正的业务价值。</p>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p>© 2025 秋收的个人简介 | 最后更新: 2025年10月</p>
+        </footer>
+    </div>
+</body>
+</html>
