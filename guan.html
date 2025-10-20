@@ -9,48 +9,17 @@
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
         body { background: #f5f7fa; color: #333; padding: 20px; display: flex; justify-content: center; align-items: center; min-height: 100vh; }
         .container { max-width: 800px; background: white; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; }
-        header { background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 30px; text-align: center; position: relative; }
+        header { background: linear-gradient(135deg, #2c3e50, #3498db); color: white; padding: 30px; text-align: center; }
         
-        /* 头像容器样式 */
-        .profile-img-container { 
-            position: relative; 
+        /* 头像样式 */
+        .profile-img { 
             width: 150px; 
             height: 150px; 
-            margin: 0 auto 15px; 
-            cursor: pointer;
-        }
-        .profile-img { 
-            width: 100%; 
-            height: 100%; 
             border-radius: 50%; 
             border: 4px solid white; 
             object-fit: cover;
-            transition: all 0.3s ease;
-        }
-        .profile-img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-        .upload-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            color: white;
-        }
-        .profile-img-container:hover .upload-overlay {
-            opacity: 1;
-        }
-        .upload-overlay i {
-            font-size: 24px;
+            margin: 0 auto 15px;
+            display: block;
         }
         
         h1 { font-size: 2rem; margin-bottom: 10px; }
@@ -67,37 +36,8 @@
         .self-evaluation { background: #f8f9fa; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db; }
         footer { background: #2c3e50; color: white; text-align: center; padding: 15px; margin-top: 20px; }
         
-        /* 上传区域样式 */
-        .upload-section {
-            display: none;
-            background: #f8f9fa;
-            padding: 20px;
-            border-radius: 8px;
-            margin-top: 15px;
-            text-align: center;
-        }
-        .upload-btn {
-            background: #3498db;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 10px 5px;
-            transition: background 0.3s ease;
-        }
-        .upload-btn:hover {
-            background: #2980b9;
-        }
-        .upload-btn.cancel {
-            background: #e74c3c;
-        }
-        .upload-btn.cancel:hover {
-            background: #c0392b;
-        }
-        
         @media (max-width: 768px) {
-            .profile-img-container { width: 120px; height: 120px; }
+            .profile-img { width: 120px; height: 120px; }
             h1 { font-size: 1.7rem; }
             table, th, td { font-size: 0.9rem; }
         }
@@ -106,19 +46,9 @@
 <body>
     <div class="container">
         <header>
-            <div class="profile-img-container">
-                <img id="profileImage" class="profile-img" src="../image/7.jpg" alt="杨冠汀">
-                <div class="upload-overlay">
-                    <i class="fas fa-camera"></i>
-                </div>
-            </div>
+            <img class="profile-img" src="../image/7.jpg" alt="杨冠汀">
             <h1>杨冠汀</h1>
-            <p class="title">软件工程师 | 前端开发专家</p>
-            <div id="uploadSection" class="upload-section">
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                <button class="upload-btn" onclick="document.getElementById('fileInput').click()">选择照片</button>
-                <button class="upload-btn cancel" onclick="hideUploadSection()">取消</button>
-            </div>
+            <p class="title">软件工程师 | 前端开发专家</p >
         </header>
         
         <main>
@@ -163,38 +93,16 @@
             <section>
                 <h2>自我评价</h2>
                 <div class="self-evaluation">
-                    <p>作为一名软件工程师,我始终保持着对技术的热情和好奇心。在五年的开发经验中,我积累了丰富的前后端开发经验,特别擅长使用React和Vue.js构建复杂的单页应用。我注重代码质量和可维护性,习惯编写清晰、模块化的代码。</p>
-                    <p>在团队协作方面,我具有良好的沟通能力和团队合作精神，能够快速融入新环境并与不同背景的同事高效合作。我习惯使用敏捷开发方法，能够适应快节奏的工作环境，并在压力下保持高质量的工作输出。</p>
-                    <p>我持续关注行业最新技术动态,定期学习新技术并将其应用到实际项目中。最近,我深入研究了WebAssembly和微前端架构,并在个人项目中进行了实践。我相信技术是为解决问题服务的，因此我不仅关注技术本身，更注重如何利用技术创造真正的业务价值。</p>
+                    <p>作为一名软件工程师,我始终保持着对技术的热情和好奇心。在五年的开发经验中,我积累了丰富的前后端开发经验,特别擅长使用React和Vue.js构建复杂的单页应用。我注重代码质量和可维护性,习惯编写清晰、模块化的代码。</p >
+                    <p>在团队协作方面,我具有良好的沟通能力和团队合作精神，能够快速融入新环境并与不同背景的同事高效合作。我习惯使用敏捷开发方法，能够适应快节奏的工作环境，并在压力下保持高质量的工作输出。</p >
+                    <p>我持续关注行业最新技术动态,定期学习新技术并将其应用到实际项目中。最近,我深入研究了WebAssembly和微前端架构,并在个人项目中进行了实践。我相信技术是为解决问题服务的，因此我不仅关注技术本身，更注重如何利用技术创造真正的业务价值。</p >
                 </div>
             </section>
         </main>
         
         <footer>
-            <p>© 2025 秋收的个人简介 | 最后更新: 2025年10月</p>
+            <p>© 2025 秋收的个人简介 | 最后更新: 2025年10月</p >
         </footer>
     </div>
-
-    <script>
-        document.querySelector('.profile-img-container').addEventListener('click', function() {
-            document.getElementById('uploadSection').style.display = 'block';
-        });
-
-        function hideUploadSection() {
-            document.getElementById('uploadSection').style.display = 'none';
-        }
-        
-        document.getElementById('fileInput').addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById('profileImage').src = e.target.result;
-                    hideUploadSection();
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-    </script>
 </body>
 </html>
