@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>书香阁让书香漂逸在网路的海洋 - 在线书店</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
+        body { background-color: #f9f7f2; color: #333; line-height: 1.6; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* 头部样式 */
+        header { background: linear-gradient(135deg, #2c3e50 0%, #4a6572 100%); color: white; padding: 20px 0; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header-content { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 10px; }
+        .logo i { font-size: 28px; color: #e67e22; }
+        .logo h1 { font-size: 24px; font-weight: 700; }
+        .search-bar { display: flex; flex: 0 0 40%; }
+        .search-bar input { padding: 10px 15px; border: none; border-radius: 4px 0 0 4px; width: 100%; font-size: 16px; }
+        .search-bar button { background: #e67e22; color: white; border: none; padding: 0 15px; border-radius: 0 4px 4px 0; cursor: pointer; }
+        
+        /* 导航栏 */
+        nav { background-color: #34495e; padding: 15px 0; }
+        .nav-links { display: flex; list-style: none; justify-content: center; gap: 30px; }
+        .nav-links a { color: white; text-decoration: none; font-weight: 500; padding: 8px 15px; border-radius: 4px; transition: background 0.3s; }
+        .nav-links a:hover, .nav-links a.active { background-color: #e67e22; }
+        
+        /* 主框架 */
+        .main-frame { display: flex; margin: 30px 0; gap: 30px; }
+        .sidebar { flex: 0 0 250px; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+        .content { flex: 1; }
+        
+        /* 侧边栏 */
+        .sidebar h2 { font-size: 20px; margin-bottom: 15px; color: #2c3e50; padding-bottom: 10px; border-bottom: 2px solid #e67e22; }
+        .category-list { list-style: none; }
+        .category-list li { margin-bottom: 12px; padding: 8px 0; border-bottom: 1px dashed #eee; transition: all 0.3s; cursor: pointer; }
+        .category-list li:hover { color: #e67e22; padding-left: 10px; }
+        
+        /* 内容区域 */
+        .section-title { font-size: 22px; margin-bottom: 20px; color: #2c3e50; padding-bottom: 10px; border-bottom: 2px solid #e67e22; }
+        
+        /* 书籍网格 */
+        .books-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 30px; margin-bottom: 50px; }
+        .book-card { background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.1); transition: transform 0.3s, box-shadow 0.3s; }
+        .book-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+        .book-img-container { height: 200px; width: 100%; position: relative; overflow: hidden; background-color: #f1f1f1; }
+        .book-img { height: 100%; width: 100%; object-fit: cover; display: block; }
+        .img-placeholder { height: 100%; width: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; background: linear-gradient(135deg, #e67e22, #e74c3c); color: white; font-size: 16px; text-align: center; }
+        .img-placeholder i { font-size: 40px; margin-bottom: 10px; }
+        .book-info { padding: 20px; }
+        .book-title { font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #2c3e50; }
+        .book-author { color: #7f8c8d; margin-bottom: 10px; font-size: 14px; }
+        .book-description { font-size: 14px; color: #555; margin-bottom: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .book-footer { display: flex; justify-content: space-between; align-items: center; }
+        .book-price { font-size: 20px; font-weight: 700; color: #e67e22; }
+        .add-to-cart { background: #3498db; color: white; border: none; padding: 8px 15px; border-radius: 4px; cursor: pointer; transition: background 0.3s; }
+        .add-to-cart:hover { background: #2980b9; }
+        
+        /* 页脚 */
+        footer { background: #2c3e50; color: white; padding: 30px 0 20px; text-align: center; }
+        .copyright { padding-top: 20px; border-top: 1px solid #34495e; color: #bdc3c7; font-size: 14px; }
+        
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; }
+            .search-bar { width: 100%; }
+            .nav-links { flex-wrap: wrap; gap: 10px; }
+            .main-frame { flex-direction: column; }
+            .sidebar { flex: none; width: 100%; }
+            .books-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-book"></i>
+                    <h1>书香阁-让书香飘逸在网络的海洋之中</h1>
+                </div>
+                <div class="search-bar">
+                    <input type="text" placeholder="搜索书籍、作者或ISBN...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- 导航栏 -->
+    <nav>
+        <div class="container">
+            <ul class="nav-links">
+                <li><a href="#" class="active">首页</a></li>
+                <li><a href="#">文学小说</a></li>
+                <li><a href="#">经管励志</a></li>
+                <li><a href="#">人文社科</a></li>
+                <li><a href="#">科技科普</a></li>
+                <li><a href="#">生活艺术</a></li>
+            </ul>
+        </div>
+    </nav>
+    
+    <!-- 主框架 -->
+    <div class="container">
+        <div class="main-frame">
+            <!-- 侧边栏 -->
+            <aside class="sidebar">
+                <h2>图书分类</h2>
+                <ul class="category-list">
+                    <li>经典文学类</li>
+                    <li>名人传记类</li>
+                    <li>心理著作类</li>
+                    <li>个人成长类</li>
+                    <li>历史文化类</li>
+                    <li>情感沟通类</li>
+                    <li>逻辑思维类</li>
+                    <li>商业财经类</li>
+                    <li>亲子家庭类</li>
+                </ul>
+                
+                <h2 style="margin-top: 30px;">促销活动</h2>
+                <ul class="category-list">
+                    <li>充值送优惠</li>
+                    <li>新人专享礼</li>
+                    <li>满减优惠券</li>
+                    <li>限时特价</li>
+                </ul>
+            </aside>
+            
+            <!-- 内容区域 -->
+            <main class="content">
+                <h2 class="section-title">热门推荐</h2>
+                <div class="books-grid">
+                    <!-- 书籍1 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=1" alt="百年孤独" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>百年孤独</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">百年孤独</h3>
+                            <p class="book-author">加西亚·马尔克斯</p>
+                            <p class="book-description">魔幻现实主义文学的代表作，描写了布恩迪亚家族七代人的传奇故事。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥45.80</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 书籍2 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=2" alt="人类简史" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>人类简史</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">人类简史</h3>
+                            <p class="book-author">尤瓦尔·赫拉利</p>
+                            <p class="book-description">从认知革命、农业革命到科学革命，重新审视人类历史的发展脉络。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥68.00</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 书籍3 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=3" alt="原则" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>原则</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">原则</h3>
+                            <p class="book-author">瑞·达利欧</p>
+                            <p class="book-description">全球最大对冲基金创始人分享生活和工作原则，帮助读者实现目标。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥89.90</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 书籍4 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=4" alt="三体" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>三体</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">三体</h3>
+                            <p class="book-author">刘慈欣</p>
+                            <p class="book-description">中国科幻文学的里程碑之作，讲述地球人类文明与三体文明的信息交流。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥32.50</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2 class="section-title">新书上市</h2>
+                <div class="books-grid">
+                    <!-- 书籍5 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=5" alt="活着" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>活着</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">活着</h3>
+                            <p class="book-author">余华</p>
+                            <p class="book-description">讲述一个人和他的命运之间的友情，展现了生命的意义和存在的价值。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥28.00</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- 书籍6 -->
+                    <div class="book-card">
+                        <div class="book-img-container">
+                            <img src="https://picsum.photos/300/400?random=6" alt="时间简史" class="book-img" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="img-placeholder" style="display:none;">
+                                <i class="fas fa-book"></i>
+                                <span>时间简史</span>
+                            </div>
+                        </div>
+                        <div class="book-info">
+                            <h3 class="book-title">时间简史</h3>
+                            <p class="book-author">史蒂芬·霍金</p>
+                            <p class="book-description">探索时间与空间的本质，从大爆炸到黑洞，讲述宇宙的起源与命运。</p>
+                            <div class="book-footer">
+                                <span class="book-price">¥39.90</span>
+                                <button class="add-to-cart">加入购物车</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+        <div class="container">
+            <div class="copyright">
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 分类切换
+            const categories = document.querySelectorAll('.category-list li');
+            categories.forEach(category => {
+                category.addEventListener('click', function() {
+                    categories.forEach(c => c.style.fontWeight = 'normal');
+                    this.style.fontWeight = 'bold';
+                });
+            });
+            
+            // 添加到购物车按钮
+            const addToCartButtons = document.querySelectorAll('.add-to-cart');
+            addToCartButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const bookTitle = this.closest('.book-card').querySelector('.book-title').textContent;
+                    alert(`《${bookTitle}》已添加到购物车！`);
+                });
+            });
+            
+            // 搜索功能
+            const searchButton = document.querySelector('.search-bar button');
+            searchButton.addEventListener('click', function() {
+                const searchInput = document.querySelector('.search-bar input');
+                if (searchInput.value.trim() !== '') {
+                    alert(`正在搜索: ${searchInput.value}`);
+                } else {
+                    alert('请输入搜索关键词');
+                }
+            });
+            
+            // 图片加载失败处理
+            const bookImages = document.querySelectorAll('.book-img');
+            bookImages.forEach(img => {
+                img.addEventListener('error', function() {
+                    this.style.display = 'none';
+                    const placeholder = this.nextElementSibling;
+                    if (placeholder && placeholder.classList.contains('img-placeholder')) {
+                        placeholder.style.display = 'flex';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
